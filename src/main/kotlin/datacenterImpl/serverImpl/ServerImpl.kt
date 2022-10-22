@@ -1,12 +1,13 @@
-package datacenterImpl.server
+package datacenterImpl.serverImpl
 
 import datacenter.computer.Computer
-import datacenter.computer.FastComputer
-import datacenter.computer.SlowComputer
 import datacenter.server.Server
+import datacenterImpl.computerImpl.FastComputer
+import datacenterImpl.computerImpl.SlowComputer
+import javax.inject.Inject
 
-class SmallSlowServer(
-    private val serverComputer: SlowComputer //Shared Computer
+class SmallSlowServer @Inject constructor(
+    private val serverComputer: SlowComputer
 ): Server {
     override fun runServer() {
         println("launching small server...")
@@ -15,8 +16,8 @@ class SmallSlowServer(
     }
 }
 
-class MediumServer(
-    private val serverComputer1: SlowComputer, //Shared Computer
+class MediumServer @Inject constructor(
+    private val serverComputer1: SlowComputer,
     private val serverComputer2: FastComputer
 ): Server {
 

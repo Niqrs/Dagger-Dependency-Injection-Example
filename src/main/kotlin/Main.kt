@@ -1,36 +1,11 @@
-import datacenter.computer.FastComputer
-import datacenter.computer.SlowComputer
-import datacenterImpl.FlexibleDataCenter
-import datacenterImpl.server.MediumServer
-import datacenterImpl.server.SmallSlowServer
-import datacenterImpl.computerImpl.*
+import di.AppComponent
+import di.DaggerAppComponent
 
-fun main() { // WITHOUT DEPENDENCY INJECTION
-    val slowProcessor = IntelPentium()
-    val fastProcessor = Ryzen7()
 
-    val bigRam = Ram16GB()
+fun main() { // WITH DEPENDENCY INJECTION
+    val dagger: AppComponent = DaggerAppComponent.create()
 
-    val slowDisk = HddDisk()
-    val fastDisk = SsdDisk()
-
-    val slowComputer = SlowComputer(
-        processor = slowProcessor,
-        ram = bigRam,
-        disk = slowDisk
-        )
-    val fastComputer = FastComputer(
-        processor = fastProcessor,
-        ram = bigRam,
-        disk = fastDisk
-    )
-
-    val slowServer = SmallSlowServer(slowComputer)
-    val mediumServer = MediumServer(slowComputer, fastComputer)
-
-    val serverList = listOf(slowServer, mediumServer)
-
-    val dataCenter = FlexibleDataCenter(serverList)
+    val dataCenter = dagger.flexibleDataCentre()
 
     dataCenter.launch()
 }

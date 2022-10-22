@@ -1,4 +1,4 @@
-package datacenterImpl.computerImpl
+package datacenterImpl.computerImpl.componentsImpl
 
 import datacenter.computer.components.BigRam
 import datacenter.computer.components.Ram

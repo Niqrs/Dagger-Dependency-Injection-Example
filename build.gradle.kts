@@ -2,6 +2,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("jvm") version "1.7.20"
+    kotlin("kapt") version "1.7.20"
     application
 }
 
@@ -15,7 +16,7 @@ repositories {
 dependencies {
     testImplementation(kotlin("test"))
     implementation("com.google.dagger:dagger:2.44")
-
+    kapt("com.google.dagger:dagger-compiler:2.44")
 }
 
 tasks.test {
