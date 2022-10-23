@@ -3,7 +3,8 @@ package di
 import dagger.Module
 import dagger.Provides
 import datacenterImpl.FlexibleDataCenter
-import datacenterImpl.computerImpl.*
+import datacenterImpl.computerImpl.FastComputer
+import datacenterImpl.computerImpl.SlowComputer
 import datacenterImpl.computerImpl.componentsImpl.*
 import datacenterImpl.serverImpl.MediumServer
 import datacenterImpl.serverImpl.SmallSlowServer
@@ -14,17 +15,25 @@ class AppModule {
 
     @Singleton
     @Provides
-    fun provideSlowComputer() = SlowComputer( // Shared computer
-        processor = IntelPentium(),
-        ram = Ram16GB(),
-        disk = HddDisk()
+    fun provideSlowComputer(
+        processor: IntelPentium,
+        ram: Ram16GB,
+        disk: HddDisk
+    ) = SlowComputer( // Shared computer
+        processor,
+        ram,
+        disk
     )
 
     @Provides
-    fun provideFastComputer() = FastComputer(
-        processor = Ryzen7(),
-        ram = Ram16GB(),
-        disk = SsdDisk()
+    fun provideFastComputer(
+        processor: Ryzen7,
+        ram: Ram16GB,
+        disk: SsdDisk
+    ) = FastComputer(
+        processor,
+        ram,
+        disk
     )
 
     @Provides
